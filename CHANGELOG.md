@@ -6,6 +6,10 @@ Based on Antminer [v0.3.0]
 ### Added
 - new "/temperature" route which shows the temperature information of the miners only.
 
+### Changed
+- move "root" view to "/details" route
+- redirect all non-localhost requests to "/temperature" route
+
 # Changelog of official Antminer Monitor
 
 ## [Unreleased]

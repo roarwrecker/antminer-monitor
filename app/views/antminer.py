@@ -40,7 +40,7 @@ def update_unit_and_value(value, unit):
 @app.route('/')
 def details():
     if __show_temperature_only__:
-        return temperature()
+        return redirect(url_for('temperature'))
 
     # Init variables
     start = time.clock()

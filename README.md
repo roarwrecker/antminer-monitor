@@ -6,7 +6,7 @@
 
 # Antminer Monitor [roarwrecker edition]
 
-This is a fork of the official [Antminer Monitor](https://github.com/anselal/antminer-monitor) which adds some extensions which are most likely not useable for users of the official codebase. The donation addresses have not been modified and, therefore, all donations will go to the original developers if someone uses the Dontate links.
+This is a fork of the official [Antminer Monitor](https://github.com/anselal/antminer-monitor) which adds some extensions which are most likely not useable for users of the official codebase. The donation addresses have not been modified and, therefore, all donations will go to the original developers if someone uses the Donate links.
 
 Lite Python based Antminer Monitor !!!
 

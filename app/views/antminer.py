@@ -12,7 +12,7 @@ from app.views.antminer_json import (get_summary,
                                      )
 from sqlalchemy.exc import IntegrityError
 from app.pycgminer import CgminerAPI
-from app import app, db, logger, __version__, __roarwrecker_version__
+from app import app, db, logger, __version__
 from app.models import Miner, MinerModel, Settings
 import re
 from datetime import timedelta
@@ -167,7 +167,6 @@ def miners():
     loading_time = end - start
     return render_template('myminers.html',
                            version=__version__,
-                           roarwrecker_version=__roarwrecker_version__,
                            models=models,
                            active_miners=active_miners,
                            inactive_miners=inactive_miners,

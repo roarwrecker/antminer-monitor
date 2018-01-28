@@ -4,6 +4,7 @@ import logging
 import os
 
 __version__ = "v0.3.0"
+__roarwrecker_version__ = "v0.0.1"
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'

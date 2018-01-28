@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Antminer Monitor [roarwrecker edition]</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <script src="/static/coinwidget/coin.js"></script>
+</head>
+<body>
+<h2>Antminer Monitor [roarwrecker edition] {{ version }}</h2>
+<fieldset style="width: 300px;">
+    <legend>Countdown</legend>
+    <b id="countdown"></b>
+</fieldset>
+
+{%- with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }}">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+{%- endwith %}
+<br>
+
+<fieldset name="active_miner_list">
+    <legend>Active Miners ({{ active_miners|length }})</legend>
+    <table style="width:100%">
+        <tr>
+            <th>IP Address</th>
+            <th>Model</th>
+            <th>Chip Temp (°C)</th>
+            <th>Uptime</th>
+        </tr>
+        {%- for active_miner in active_miners|sort(attribute='ip') %}
+            <tr{%- if active_miner.ip in miner_errors %} class="error"{%- endif %}>
+                <td><a target="_blank" href="http://{{ active_miner.ip }}">{{ active_miner.ip }}</a></td>
+                <td>{{ workers[active_miner.ip] }}</td>
+                <td title="{{ active_miner.model.description }}">{{ active_miner.model.model }}</td>
+                <td>{{ temperatures[active_miner.ip] }}</td>
+                <td>{{ uptimes[active_miner.ip] }}</td>
+            </tr>
+        {%- endfor %}
+    </table>
+</fieldset>
+
+<br>
+</i>
+<i>Generated in {{ loading_time }} seconds. 
+    Original Source code <a target="_blank" href="https://github.com/anselal/antminer-monitor">here</a>.
+    Modified Source code <a target="_blank" href="https://github.com/roarwrecker/antminer-monitor">here</a>.
+    <script>
+        CoinWidgetCom.go({
+
+            /* make sure you update the wallet_address or you will not get your donations */
+            wallet_address: "1HYCBovF6mqqKMyG4m2DQxXpdKmogK4Wuw"
+
+            , currency: "bitcoin"
+            , counter: "hide"
+            , alignment: "br"
+            , qrcode: true
+            , auto_show: false
+            , lbl_button: "Donate"
+            , lbl_address: "Donate Bitcoin to this Address:"
+            , lbl_count: "donations"
+            , lbl_amount: "BTC"
+        });
+        CoinWidgetCom.go({
+
+            /* make sure you update the wallet_address or you will not get your donations */
+            wallet_address: "LLrjq6nRokS74yPMspitHkXv4nLtEyebNW"
+
+            , currency: "litecoin"
+            , counter: "hide"
+            , alignment: "ac"
+            , qrcode: true
+            , auto_show: false
+            , lbl_button: "Donate"
+            , lbl_address: "Donate Litecoin to this Address:"
+            , lbl_count: "donations"
+            , lbl_amount: "LTC"
+        });
+        CoinWidgetCom.go({
+
+            /* make sure you update the wallet_address or you will not get your donations */
+            wallet_address: "XuEnZtsCmWcDwKVe82wQddsfwUifXyeRoQ"
+
+            , currency: "dash"
+            , counter: "hide"
+            , alignment: "bl"
+            , qrcode: true
+            , auto_show: false
+            , lbl_button: "Donate"
+            , lbl_address: "Donate Dash to this Address:"
+            , lbl_count: "donations"
+            , lbl_amount: "DASH"
+        });
+        (function countdown(remaining) {
+            if(remaining === 0)
+                location.reload(true);
+            else {
+                document.getElementById('countdown').innerHTML = 'Refresh in: ' + remaining + ' sec';
+                setTimeout(function(){ countdown(remaining - 1); }, 1000);
+            }
+        })(120);
+    </script>
+    <!-- https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=dash:XiXwTjyN8DAsQaRh2pcFVyVSbXvk6Ph6ro?amount=0.001-->
+</body>
+</html>

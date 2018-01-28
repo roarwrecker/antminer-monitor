@@ -36,8 +36,8 @@ def update_unit_and_value(value, unit):
     return (value, unit)
 
 
-@app.route('/')
-def miners():
+@app.route('/details')
+def details():
     # Init variables
     start = time.clock()
     miners = Miner.query.all()

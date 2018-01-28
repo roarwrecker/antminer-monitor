@@ -1,4 +1,12 @@
-# Changelog
+# Changelog of roarwrecker edition
+
+## 0.0.1
+Based on Antminer [v0.3.0]
+
+### Added
+- new "/temperature" route which shows the temperature information of the miners only.
+
+# Changelog of official Antminer Monitor
 
 ## [Unreleased]
 

@@ -1,9 +1,14 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 import logging
 import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 __version__ = "v0.0.1"
+
+if os.environ.get('TEMPERATURE_ONLY', '0') == '1':
+    __show_temperature_only__ = True
+else:
+    __show_temperature_only__ = False
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super secret key'
@@ -30,4 +35,4 @@ handler.setFormatter(formatter)
 # add handlers to the logger
 logger.addHandler(handler)
 
-from app.views import root, antminer, antminer_json, temperature
+from app.views import antminer, antminer_json, temperature

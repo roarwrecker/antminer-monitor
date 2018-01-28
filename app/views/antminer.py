@@ -10,6 +10,7 @@ from app.views.antminer_json import (get_summary,
                                      get_pools,
                                      get_stats,
                                      )
+from app.views.temperature import temperature
 from sqlalchemy.exc import IntegrityError
 from app.pycgminer import CgminerAPI
 from app import app, db, logger, __version__
@@ -36,8 +37,11 @@ def update_unit_and_value(value, unit):
     return (value, unit)
 
 
-@app.route('/details')
+@app.route('/')
 def details():
+    if __show_temperature_only__:
+        return temperature()
+
     # Init variables
     start = time.clock()
     miners = Miner.query.all()

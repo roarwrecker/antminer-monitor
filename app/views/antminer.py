@@ -13,7 +13,7 @@ from app.views.antminer_json import (get_summary,
 from app.views.temperature import temperature
 from sqlalchemy.exc import IntegrityError
 from app.pycgminer import CgminerAPI
-from app import app, db, logger, __version__
+from app import app, db, logger, __version__, __show_temperature_only__
 from app.models import Miner, MinerModel, Settings
 import re
 from datetime import timedelta
